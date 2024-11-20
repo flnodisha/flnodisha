@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Interactive Tiles</title>
+  <style>
+    /* Reset and basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: #cae7f0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Header strip styling */
+    header {
+      display: flex;
+      position: fixed;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #f9c12b;
+    }
+
+    /* Styles for the Hamburger Menu */
+    .menu-button {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      display: block;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+
+    /* Navigation Menu */
+    nav {
+      display: flex;
+      gap: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    nav.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: #333;
+      padding: 10px;
+      border-radius: 5px;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color: #f9c12b;
+      color: black;
+    }
+
+    /* Show hamburger menu on small screens */
+    @media (max-width: 768px) {
+      .menu-button {
+        display: flex;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      /* Make sure the download button is always visible on mobile */
+      .download-btn {
+      background-color: #f9c12b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: block;
+      }
+    }
+
+    /* Hide the download button on desktop */
+    .download-btn {
+      background-color: #f9c12b;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Centered container for tiles */
+    .tile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      padding: 200px 20px 20px;
+    }
+
+    /* Individual tile styles */
+    .tile {
+      flex: 1 1 200px;
+      max-width: 200px;
+      height: 250px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+      transform: scale(2);
+      transition: transform 0.4s;
+      z-index: 0;
+    }
+
+    .tile:hover::before {
+      transform: scale(1);
+    }
+
+    .tile-icon {
+      margin-top: 7%;
+      width: 80%;
+      height: auto;
+      margin-bottom: 0px;
+      position: center;
+    }
+
+    .tile-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+      z-index: 1;
+    }
+
+    .tile-text {
+      font-size: 0.9em;
+      color: #555;
+      padding: 0 10px;
+      z-index: 1;
+    }
+
+    .class-1 { background:#ffcccb; }
+    .class-2 { background: #57c2e6; }
+    .class-3 { background: #7ff07f; }
+    .teacher { background: #ffd700; }
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">FLN Odisha</div>
+    <div id="menu-button" class="menu-button">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav>
+      <a href="team.html">Team</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    <!-- Download Button outside of nav, visible on both mobile and desktop -->
+    <a href="https://github.com/flnodisha/flnodisha/raw/main/flnodisha.apk" class="download-btn" download>Download</a>
+  </header>
+
+  <!-- Centered Tile Container -->
+  <div class="tile-container">
+    <a href="class1.html" class="tile class-1">
+      <img class="tile-icon" src="1.png" alt="class-1">
+      <div class="tile-title">ପ୍ରଥମ ଶ୍ରେଣୀ</div>
+    </a>
+
+    <a href="class2.html" class="tile class-2">
+      <img class="tile-icon" src="2.png" alt="class-2">
+      <div class="tile-title">ଦ୍ଵିତୀୟ ଶ୍ରେଣୀ</div>
+    </a>
+
+    <a href="class3.html" class="tile class-3">
+      <img class="tile-icon" src="3.png" alt="class-3">
+      <div class="tile-title">ତୃତୀୟ ଶ୍ରେଣୀ</div>
+    </a>
+
+    <a href="teacher.html" class="tile teacher">
+      <img class="tile-icon" src="teacher.png" alt="teacher">
+      <div class="tile-title">ଶିକ୍ଷକ</div>
+    </a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuButton = document.getElementById("menu-button");
+      const navMenu = document.querySelector("header nav");
+
+      menuButton.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

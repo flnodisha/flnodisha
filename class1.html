@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 1 - Topics</title>
+  <style>
+    /* Basic Reset and Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .header .website-name {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .tile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 200px 20px 20px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* Tile Styles */
+    .tile {
+      flex: 1 1 200px;
+      max-width: 200px;
+      height: 150px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tile-icon {
+      font-size: 40px;
+      margin-bottom: 5px;
+    }
+
+    .tile-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://via.placeholder.com/40" alt="Logo">
+      <span class="website-name">ପ୍ରଥମ ଶ୍ରେଣୀ</span>
+    </div>
+  </header>
+
+  <!-- Tile Container -->
+  <div class="tile-container">
+    <a href="big.html" class="tile">
+      <div class="tile-icon">📘</div>
+      <div class="tile-title">ବଡ ବହି</div>
+    </a>
+    <a href="topic2.html" class="tile">
+      <div class="tile-icon">📙</div>
+      <div class="tile-title">ଗଳ୍ପ କାର୍ଡ</div>
+    </a>
+    <a href="topic3.html" class="tile">
+      <div class="tile-icon">📗</div>
+      <div class="tile-title">କବିତା ପୋଷ୍ଟର</div>
+    </a>
+    <a href="topic4.html" class="tile">
+      <div class="tile-icon">📕</div>
+      <div class="tile-title">ପାଠ୍ୟ ପୁସ୍ତକ</div>
+    </a>
+    <a href="topic5.html" class="tile">
+      <div class="tile-icon">📔</div>
+      <div class="tile-title">କାର୍ଯ୍ୟ ପୁସ୍ତିକା</div>
+    </a>
+    <a href="topic6.html" class="tile">
+      <div class="tile-icon">📓</div>
+      <div class="tile-title">ଡିଜିଟାଲ କାର୍ଯ୍ୟ</div>
+    </a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 1 - Topics</title>
+  <style>
+    /* Basic Reset and Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .header .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .logo img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .header .website-name {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .tile-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 100px 20px 20px; /* Adjusted padding to account for fixed header */
+      width: 100%;
+      max-width: 800px;
+    }
+
+    /* Tile Styles */
+    .tile {
+      flex: 1 1 200px;
+      max-width: 200px;
+      height: 150px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tile-icon {
+      font-size: 40px;
+      margin-bottom: 5px;
+    }
+
+    .tile-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="https://via.placeholder.com/40" alt="Logo">
+      <span class="website-name">ବଡ ବହି</span>
+    </div>
+  </header>
+
+  <!-- Tile Container -->
+  <div class="tile-container">
+    <a href="hatipithirecheli.html" class="tile">
+      <div class="tile-icon">📘</div>
+      <div class="tile-title">ହାତୀ ଓ ଚଢେଇ</div>
+    </a>
+    <a href="page2.html" class="tile">
+      <div class="tile-icon">📙</div>
+      <div class="tile-title">ତିନି ସାଙ୍ଗ</div>
+    </a>
+    <a href="page3.html" class="tile">
+      <div class="tile-icon">📗</div>
+      <div class="tile-title">ହାତୀ ପିଠିରେ ଛେଳି</div>
+    </a>
+    <a href="page4.html" class="tile">
+      <div class="tile-icon">📕</div>
+      <div class="tile-title">କୁକୁଡା ଓ କୁମ୍ଭୀର</div>
+    </a>
+    <a href="page5.html" class="tile">
+      <div class="tile-icon">📔</div>
+      <div class="tile-title">ଭେଣ୍ଡିର ବାହାଘର</div>
+    </a>
+    <a href="page6.html" class="tile">
+      <div class="tile-icon">📓</div>
+      <div class="tile-title">ଚାଲ ନଟୁ ଖେଳିବା</div>
+    </a>
+    <a href="page7.html" class="tile">
+      <div class="tile-icon">📒</div>
+      <div class="tile-title">ଉପହାର</div>
+    </a>
+    <a href="page8.html" class="tile">
+      <div class="tile-icon">📖</div>
+      <div class="tile-title">କୁକୁଡା ଛୁଆ ବଜାର ଗଲେ</div>
+    </a>
+    <a href="page9.html" class="tile">
+      <div class="tile-icon">📔</div>
+      <div class="tile-title">ସୋନୁର ଲଡୁ</div>
+    </a>
+    <a href="page10.html" class="tile">
+      <div class="tile-icon">📓</div>
+      <div class="tile-title">ମା ଓ ଛୁଆ</div>
+    </a>
+  </div>
+
+</body>
+</html>

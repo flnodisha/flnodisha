@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team</title>
+  <style>
+    /* Reset and basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Container for the team section */
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Card style for each team member */
+    .team-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .team-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Image style: rounded and placed on the left */
+    .team-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+
+    /* Content of the card */
+    .team-content {
+      text-align: left;
+    }
+
+    /* Name styling */
+    .team-name {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    /* Position styling */
+    .team-position {
+      font-size: 1em;
+      color: #777;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="team-container">
+    <!-- Team Member 1 -->
+    <div class="team-card">
+      <img src="team-member1.jpg" alt="Team Member 1">
+      <div class="team-content">
+        <div class="team-name">John Doe</div>
+        <div class="team-position">CEO & Founder</div>
+      </div>
+    </div>
+
+    <!-- Team Member 2 -->
+    <div class="team-card">
+      <img src="team-member2.jpg" alt="Team Member 2">
+      <div class="team-content">
+        <div class="team-name">Jane Smith</div>
+        <div class="team-position">Lead Developer</div>
+      </div>
+    </div>
+
+    <!-- Team Member 3 -->
+    <div class="team-card">
+      <img src="team-member3.jpg" alt="Team Member 3">
+      <div class="team-content">
+        <div class="team-name">Alice Brown</div>
+        <div class="team-position">Marketing Manager</div>
+      </div>
+    </div>
+
+    <!-- Team Member 4 -->
+    <div class="team-card">
+      <img src="team-member4.jpg" alt="Team Member 4">
+      <div class="team-content">
+        <div class="team-name">Bob Lee</div>
+        <div class="team-position">Designer</div>
+      </div>
+    </div>
+
+    <!-- Team Member 5 -->
+    <div class="team-card">
+      <img src="team-member5.jpg" alt="Team Member 5">
+      <div class="team-content">
+        <div class="team-name">Charlie Johnson</div>
+        <div class="team-position">Product Manager</div>
+      </div>
+    </div>
+
+    <!-- Team Member 6 -->
+    <div class="team-card">
+      <img src="team-member6.jpg" alt="Team Member 6">
+      <div class="team-content">
+        <div class="team-name">David Kim</div>
+        <div class="team-position">Software Engineer</div>
+      </div>
+    </div>
+
+    <!-- Team Member 7 -->
+    <div class="team-card">
+      <img src="team-member7.jpg" alt="Team Member 7">
+      <div class="team-content">
+        <div class="team-name">Emily Adams</div>
+        <div class="team-position">Business Analyst</div>
+      </div>
+    </div>
+
+    <!-- Team Member 8 -->
+    <div class="team-card">
+      <img src="team-member8.jpg" alt="Team Member 8">
+      <div class="team-content">
+        <div class="team-name">Frank Harris</div>
+        <div class="team-position">Operations Lead</div>
+      </div>
+    </div>
+
+    <!-- Team Member 9 -->
+    <div class="team-card">
+      <img src="team-member9.jpg" alt="Team Member 9">
+      <div class="team-content">
+        <div class="team-name">Grace Martinez</div>
+        <div class="team-position">Customer Support Lead</div>
+      </div>
+    </div>
+
+    <!-- Team Member 10 -->
+    <div class="team-card">
+      <img src="team-member10.jpg" alt="Team Member 10">
+      <div class="team-content">
+        <div class="team-name">Hannah White</div>
+        <div class="team-position">HR Manager</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
