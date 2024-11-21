@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Tiles</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Set up the main page style */
+        body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: #f8e8e8;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  z-index: 999;
+  flex-wrap: wrap; /* Allow elements to wrap on small screens */
+}
+
+/* Ensure the menu icon is always positioned at the top-right corner */
+.menu-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Position the icon in the top-right corner */
+}
+
+.menu-button span {
+  display: block;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Navigation Menu */
+nav {
+  display: flex;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+nav.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #f9c12b;
+  color: black;
+}
+
+/* Show hamburger menu on small screens */
+@media (max-width: 768px) {
+  header {
+    justify-content: flex-start;
+    padding: 20px; /* Adjust padding for mobile */
+  }
+
+  /* Position the download button to the left of the menu icon on mobile */
+  .menu-button {
+    display: flex; /* Show menu button on mobile */
+    right: 10px; /* Keep it slightly from the right edge */
+  }
+
+  .download-btn {
+    background-color: #f9c12b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 70px; /* Move it slightly to the left from the menu button */
+  }
+
+  /* Keep the nav menu visible and right aligned */
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  /* Ensure the download button is always visible on mobile */
+  .download-btn {
+    order: 1; /* Move the download button above the nav menu */
+  }
+  
+  /* Ensure the nav menu is ordered after the download button */
+  nav {
+    order: 2;
+  }
+}
+
+/* Hide the download button on desktop */
+.download-btn {
+  background-color: #f9c12b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: block;
+  order: 2; /* Ensure download button is after the nav menu on desktop */
+}
+        /* Container for grid layout */
+        .container {
+            margin-top: 100px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 95%;
+            max-width: 800px;
+            padding: 10px;
+        }
+
+        /* Style each tile */
+        .tile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90px;
+            border-radius: 15px;
+            color: rgb(0, 0, 0);
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        /* Add hover effect for desktops */
+        .tile:hover {
+            transform: scale(1.05);
+        }
+
+        /* Gradients for each tile */
+        .tile:nth-child(1) { background-color: #ffa07a; }
+        .tile:nth-child(2) { background-color: #add8e6; }
+        .tile:nth-child(3) { background-color: #90ee90; }
+        .tile:nth-child(4) { background-color: #ffd700; }
+        .tile:nth-child(5) { background-color: #ffb6c1; }
+        .tile:nth-child(6) { background-color: #ffa07a; }
+        .tile:nth-child(7) { background-color: #add8e6; }
+        .tile:nth-child(8) { background-color: #90ee90; }
+        .tile:nth-child(9) { background-color: #ffd700; }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"> ମା ଓ ଛୁଆ</div>
+        <div id="menu-button" class="menu-button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      
+        <!-- Move the Download Button above the navigation menu -->
+        <a href="https://github.com/flnodisha/flnodisha/raw/main/flnodisha.apk" class="download-btn" download>Download</a>
+      
+        <nav>
+          <a href="team.html">Team</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+      </header>
+
+    <div class="container">
+        <div class="tile" onclick="playAudio('audio1')">ହାତୀ</div>
+        <div class="tile" onclick="playAudio('audio2')">ଛେଳି</div>
+        <div class="tile" onclick="playAudio('audio3')">ଠେକୁଆ</div>
+        <div class="tile" onclick="playAudio('audio4')">ବଣ</div>
+        <div class="tile" onclick="playAudio('audio5')">ଗୁଣ୍ଡଚିମୂଷା</div>
+        <div class="tile" onclick="playAudio('audio6')">ପଳାଇଗଲା</div>
+        <div class="tile" onclick="playAudio('audio7')">ପିଠି</div>
+        <div class="tile" onclick="playAudio('audio8')">ନିଦ</div>
+        <div class="tile" onclick="playAudio('audio9')">ବୁଲାଇଲା</div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="audio1" src="audio1.mp3"></audio>
+    <audio id="audio2" src="audio2.mp3"></audio>
+    <audio id="audio3" src="audio3.mp3"></audio>
+    <audio id="audio4" src="audio4.mp3"></audio>
+    <audio id="audio5" src="audio5.mp3"></audio>
+    <audio id="audio6" src="audio6.mp3"></audio>
+    <audio id="audio7" src="audio7.mp3"></audio>
+    <audio id="audio8" src="audio8.mp3"></audio>
+    <audio id="audio9" src="audio9.mp3"></audio>
+
+    <script>
+        function playAudio(audioId) {
+            const audio = document.getElementById(audioId);
+            audio.currentTime = 0; // Reset audio to start
+            audio.play();
+        }
+    </script>
+</body>
+</html>

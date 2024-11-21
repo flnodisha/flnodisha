@@ -35,6 +35,45 @@ header {
   flex-wrap: wrap; /* Allow elements to wrap on small screens */
 }
 
+/* Splash Screen Styles */
+#splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #cae7f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #splash-screen img {
+      width: 150px;
+      animation: zoomOut 2s ease-out forwards;
+    }
+
+    @keyframes zoomOut {
+      100% {
+        transform: scale(1.5);
+      }
+      0% {
+        transform: scale(1);
+      }
+    }
+
+    /* Hide splash screen after animation */
+    body.loaded #splash-screen {
+      display: none;
+    }
+
+.logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #f9c12b;
+    }
+
 /* Ensure the menu icon is always positioned at the top-right corner */
 .menu-button {
   display: none;
@@ -227,9 +266,81 @@ nav a:hover {
     .class-3 { background: #7ff07f; }
     .teacher { background: #ffd700; }
 
+    /* Mobile App Section */
+    .mobile-app-section {
+      margin-top: 7%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 50px 20px;
+      background-color: #e6f7ff;
+    }
+    .mobile-app-section .content {
+      flex: 1;
+      max-width: 500px;
+      margin-right: 20px;
+    }
+    .mobile-app-section h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .mobile-app-section p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .mobile-app-section .features {
+      list-style: none;
+      padding: 0;
+    }
+    .mobile-app-section .features li {
+      font-size: 16px;
+      color: #333;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    .mobile-app-section .features li::before {
+      content: "✔️";
+      margin-right: 10px;
+      color: #007acc;
+    }
+    .mobile-app-section .app-image {
+      flex: 1;
+      max-width: 300px;
+    }
+    .mobile-app-section .app-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: #333;
+      width: 100%;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .social-icons a:hover {
+      color: #f9c12b;
+    }
+
   </style>
 </head>
 <body>
+
+  <div id="splash-screen">
+    <img src="fln_logo.png" alt="Splash Screen">
+  </div>
 
   <header class="header">
     <div class="logo">FLN Odisha</div>
@@ -273,6 +384,31 @@ nav a:hover {
     </a>
   </div>
 
+  <section class="mobile-app-section">
+    <div class="content">
+      <h2>Download Our App</h2>
+      <p>Enjoy learning and fun with our mobile app designed specifically for kids. Easy to use, interactive, and full of exciting features!</p>
+      <ul class="features">
+        <li>Interactive Learning Games</li>
+        <li>Parental Control Features</li>
+        <li>Offline Access to Content</li>
+        <li>Daily Progress Reports</li>
+      </ul>
+    </div>
+    <div class="app-image">
+      <img src="fln_logo.png" alt="Mobile App">
+    </div>
+  </section>
+  
+  <footer>
+    <p>&copy; 2024 FLN Odisha. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.getElementById("menu-button");
@@ -281,6 +417,25 @@ nav a:hover {
       menuButton.addEventListener("click", function () {
         navMenu.classList.toggle("active");
       });
+    });
+
+    // Check if the user has already visited
+    document.addEventListener("DOMContentLoaded", function () {
+      const splashScreen = document.getElementById("splash-screen");
+
+      // Check localStorage for a 'visited' flag
+      const hasVisited = localStorage.getItem("hasVisitedIndex");
+
+      if (hasVisited) {
+        // Hide the splash screen immediately
+        document.body.classList.add("loaded");
+      } else {
+        // Show the splash screen and set the flag after 2.5 seconds
+        setTimeout(() => {
+          document.body.classList.add("loaded");
+          localStorage.setItem("hasVisitedIndex", "true");
+        }, 2500);
+      }
     });
   </script>
 
