@@ -2,92 +2,226 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Scrollable PDF Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLN Odisha</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#007bff">
     <style>
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-        #pdf-container {
-            width: 95%;
-            height: 100%;
-            margin: 0 auto;
+
+        body {
+            background-color: #e6f2ff; /* Light blue */
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background-color: #0056b3;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
-            background-color: #525659;
         }
-        #pdf-render {
-            width: 100%;
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Menu Container */
+        .menu-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin-right: 15px;
+            display: block;
+        }
+
+        /* Install Button */
+        #installButton {
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: auto; /* Push to the right */
+        }
+
+        #installButton:hover {
+            background-color: #ffa500;
+        }
+
+        /* Tiles Container */
+        .tiles-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Tiles with Custom Colors */
+        .tile {
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: auto;
-            height: 100%;
-            padding: 20px 0;
+            justify-content: center;
+            height: 170px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        #pdf-render canvas {
-            max-width: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+        .class-1 { background: #ffcccb; } /* Light Red */
+        .class-2 { background: #57c2e6; } /* Sky Blue */
+        .class-3 { background: #7ff07f; } /* Light Green */
+        .teacher { background: #ffd700; } /* Gold */
+
+        .tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tile img {
+            width: 60px;
+            height: 60px;
             margin-bottom: 10px;
+            object-fit: contain;
+        }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                background-color: #0056b3;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                z-index: 10;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .tiles-container {
+                width: 95%;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="pdf-container">
-        <div id="pdf-render"></div>
+
+    <div class="header">FLN ଓଡ଼ିଶା</div>
+
+    <nav class="nav-bar">
+        <div class="menu-container">
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Team</a></li>
+            </ul>
+        </div>
+        <button id="installButton" onclick="installPWA()">Install App</button>
+    </nav>
+
+    <div class="tiles-container">
+        <div class="tile class-1" onclick="location.href='class1.html'">
+            <img src="1.png" alt="Class 1 Icon" />
+            ୧ମ ଶ୍ରେଣୀ
+        </div>
+        <div class="tile class-2" onclick="location.href='class2.html'">
+            <img src="/api/placeholder/60/60" alt="Class 2 Icon" />
+            ୨ୟ ଶ୍ରେଣୀ
+        </div>
+        <div class="tile class-3" onclick="location.href='class3.html'">
+            <img src="/api/placeholder/60/60" alt="Class 3 Icon" />
+            ୩ୟ ଶ୍ରେଣୀ
+        </div>
+        <div class="tile teacher" onclick="location.href='teacher.html'">
+            <img src="/api/placeholder/60/60" alt="Teacher Icon" />
+            ଶିକ୍ଷକ
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
     <script>
-        class PDFViewer {
-            constructor() {
-                this.pdfContainer = document.getElementById('pdf-render');
-            }
+        // Toggle menu function
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("show");
+        }
 
-            async loadPDF(url) {
-                try {
-                    // Configure PDF.js
-                    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-
-                    // Load PDF
-                    const pdfDocument = await pdfjsLib.getDocument(url).promise;
-                    
-                    // Render all pages
-                    for (let pageNum = 1; pageNum <= pdfDocument.numPages; pageNum++) {
-                        await this.renderPage(pdfDocument, pageNum);
-                    }
-                } catch (error) {
-                    console.error('PDF Loading Error:', error);
-                    this.pdfContainer.innerHTML = `<p>Error loading PDF: ${error.message}</p>`;
-                }
-            }
-
-            async renderPage(pdfDocument, pageNumber) {
-                const page = await pdfDocument.getPage(pageNumber);
-                
-                // Create canvas for page
-                const canvas = document.createElement('canvas');
-                const context = canvas.getContext('2d');
-                this.pdfContainer.appendChild(canvas);
-
-                // Calculate viewport with default scale
-                const viewport = page.getViewport({ scale: 1.5 });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                // Render page on canvas
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                await page.render(renderContext);
+        // Install PWA manually
+        function installPWA() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service-worker.js').then(() => {
+                    alert("App is ready to install! Please check your browser install option.");
+                }).catch((err) => {
+                    console.log('Service Worker registration failed:', err);
+                });
+            } else {
+                alert("Your browser does not support PWA installation.");
             }
         }
 
-        // Initialize PDF Viewer
-        const pdfViewer = new PDFViewer();
-        pdfViewer.loadPDF('12.pdf');
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
     </script>
+
 </body>
 </html>
