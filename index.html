@@ -195,33 +195,39 @@
     </div>
 
     <script>
-        // Toggle menu function
-        function toggleMenu() {
-            document.getElementById("nav-links").classList.toggle("show");
-        }
+    let deferredPrompt;
 
-        // Install PWA manually
-        function installPWA() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('service-worker.js').then(() => {
-                    alert("App is ready to install! Please check your browser install option.");
-                }).catch((err) => {
-                    console.log('Service Worker registration failed:', err);
-                });
-            } else {
-                alert("Your browser does not support PWA installation.");
-            }
-        }
+    // Capture the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault(); // Prevent automatic prompt
+        deferredPrompt = event; // Store the event for later use
+        document.getElementById("installButton").style.display = "block"; // Ensure button is visible
+    });
 
-        // Register service worker for PWA functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(reg => console.log('Service Worker registered'))
-                    .catch(err => console.log('Service Worker registration failed:', err));
+    // Function to trigger PWA installation prompt
+    function installPWA() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt(); // Show installation prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the PWA installation');
+                } else {
+                    console.log('User dismissed the PWA installation');
+                }
+                deferredPrompt = null; // Reset prompt variable
             });
+        } else {
+            alert("PWA installation is not available at the moment.");
         }
-    </script>
+    }
+
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.log('Service Worker registration failed:', err));
+    }
+</script>
 
 </body>
 </html>
