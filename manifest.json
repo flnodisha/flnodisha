@@ -2,6 +2,7 @@
   "name": "FLN Odisha",
   "short_name": "FLN Odisha",
   "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#e6f2ff",
   "theme_color": "#007bff",
@@ -47,5 +48,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "prefer_related_applications": false
 }
