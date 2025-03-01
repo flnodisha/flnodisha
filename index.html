@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #e6f2ff; /* Light blue */
+            background-color: #e6f2ff; /* Slightly faded blue */
             text-align: center;
         }
 
@@ -53,19 +53,18 @@
             font-size: 18px;
         }
 
-        /* Menu Container */
+        /* Hamburger Menu */
         .menu-container {
             display: flex;
             align-items: center;
         }
 
-        /* Hamburger Menu */
         .hamburger {
+            display: none;
             font-size: 24px;
             color: white;
             cursor: pointer;
-            margin-right: 15px;
-            display: block;
+            margin-right: 10px;
         }
 
         /* Install Button */
@@ -77,26 +76,27 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-left: auto; /* Push to the right */
+            margin-left: 15px;
+            display: none;
         }
 
         #installButton:hover {
             background-color: #ffa500;
         }
 
-        /* Tiles Container */
+        /* Main Content - Tiles */
         .tiles-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
             gap: 20px;
             padding: 20px;
-            width: 90%;
+            width: 90%; /* Slightly decrease width */
             max-width: 800px;
             margin: auto;
         }
 
-        /* Tiles with Custom Colors */
         .tile {
+            background-color: #ffcc00;
             color: black;
             font-size: 20px;
             font-weight: bold;
@@ -110,15 +110,11 @@
             align-items: center;
             justify-content: center;
             height: 170px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
         }
 
-        .class-1 { background: #ffcccb; } /* Light Red */
-        .class-2 { background: #57c2e6; } /* Sky Blue */
-        .class-3 { background: #7ff07f; } /* Light Green */
-        .teacher { background: #ffd700; } /* Gold */
-
         .tile:hover {
+            background-color: #ffa500;
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
@@ -130,8 +126,18 @@
             object-fit: contain;
         }
 
-        /* Mobile Styles */
+        /* Colors for Tiles */
+        .class1 { background-color: #ff6666; }
+        .class2 { background-color: #66cc66; }
+        .class3 { background-color: #6699ff; }
+        .teacher { background-color: #ff9900; }
+
+        /* Mobile Screen Styles */
         @media screen and (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -150,6 +156,10 @@
             .nav-links li {
                 text-align: center;
                 padding: 10px 0;
+            }
+
+            .tile {
+                height: 140px;
             }
 
             .tiles-container {
@@ -172,19 +182,19 @@
                 <li><a href="#">Team</a></li>
             </ul>
         </div>
-        <button id="installButton" onclick="installPWA()">Install App</button>
+        <button id="installButton">Install App</button>
     </nav>
 
     <div class="tiles-container">
-        <div class="tile class-1" onclick="location.href='class1.html'">
-            <img src="1.png" alt="Class 1 Icon" />
+        <div class="tile class1" onclick="location.href='class1.html'">
+            <img src="/api/placeholder/60/60" alt="Class 1 Icon" />
             ୧ମ ଶ୍ରେଣୀ
         </div>
-        <div class="tile class-2" onclick="location.href='class2.html'">
+        <div class="tile class2" onclick="location.href='class2.html'">
             <img src="/api/placeholder/60/60" alt="Class 2 Icon" />
             ୨ୟ ଶ୍ରେଣୀ
         </div>
-        <div class="tile class-3" onclick="location.href='class3.html'">
+        <div class="tile class3" onclick="location.href='class3.html'">
             <img src="/api/placeholder/60/60" alt="Class 3 Icon" />
             ୩ୟ ଶ୍ରେଣୀ
         </div>
@@ -195,39 +205,48 @@
     </div>
 
     <script>
-    let deferredPrompt;
-
-    // Capture the beforeinstallprompt event
-    window.addEventListener('beforeinstallprompt', (event) => {
-        event.preventDefault(); // Prevent automatic prompt
-        deferredPrompt = event; // Store the event for later use
-        document.getElementById("installButton").style.display = "block"; // Ensure button is visible
-    });
-
-    // Function to trigger PWA installation prompt
-    function installPWA() {
-        if (deferredPrompt) {
-            deferredPrompt.prompt(); // Show installation prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the PWA installation');
-                } else {
-                    console.log('User dismissed the PWA installation');
-                }
-                deferredPrompt = null; // Reset prompt variable
-            });
-        } else {
-            alert("PWA installation is not available at the moment.");
+        // Toggle menu function
+        function toggleMenu() {
+            document.getElementById("nav-links").classList.toggle("show");
         }
-    }
 
-    // Register service worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-            .then(() => console.log('Service Worker registered'))
-            .catch(err => console.log('Service Worker registration failed:', err));
-    }
-</script>
+        // PWA installation
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            // Show the install button
+            installButton.style.display = 'block';
+        });
+
+        installButton.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                // We no longer need the prompt
+                deferredPrompt = null;
+                // Hide the install button
+                installButton.style.display = 'none';
+            }
+        });
+
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
