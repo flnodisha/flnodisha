@@ -113,10 +113,15 @@
         }
 
         /* Colors for Tiles */
+        .kindergarten { background-color: #ff9ff3; }
         .class1 { background-color: #ffcccb; }
         .class2 { background-color: #57c2e6; }
         .class3 { background-color: #7ff07f; }
-        .teacher { background-color: #ffd700; }
+        .teacher { 
+            background-color: #ffd700; 
+            grid-column: 1 / -1; /* Span full width */
+            width: 100%;
+        }
 
         /* Mobile Screen Styles */
         @media screen and (max-width: 768px) {
@@ -171,11 +176,15 @@
     </nav>
 
     <div class="tiles-container">
+        <div class="tile kindergarten" onclick="location.href='kindergarten.html'">
+            <img src="kindergarten.png" alt="Kindergarten Icon" />
+            ଶିଶୁ ବାଟିକା
+        </div>
         <div class="tile class1" onclick="location.href='class1.html'">
             <img src="1.png" alt="Class 1 Icon" />
             ୧ମ ଶ୍ରେଣୀ
         </div>
-        <div class="tile class2" onclick="location.href='comingsoon.html'">
+        <div class="tile class2" onclick="location.href='class2.html'">
             <img src="2.png" alt="Class 2 Icon" />
             ୨ୟ ଶ୍ରେଣୀ
         </div>
